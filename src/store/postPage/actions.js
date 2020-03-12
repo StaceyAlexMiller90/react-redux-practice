@@ -37,3 +37,4 @@ export function fetchPost(id) {
     )
   }
 }
+
