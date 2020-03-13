@@ -1,10 +1,10 @@
 // src/pages/HomePage.js
 import React from "react";
-import PostsFeed from '../components/PostsFeed'
+import PostsFeed from '../../components/PostsFeed/PostsFeed'
+import './HomePage.css'
 
 export default function HomePage() {
-  return <div>
-            <h1>Hello!</h1>
+  return <div className="page">
             <PostsFeed />
         </div>;
 }

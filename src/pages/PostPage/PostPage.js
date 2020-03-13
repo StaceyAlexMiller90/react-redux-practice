@@ -1,10 +1,11 @@
 import React, { useEffect } from 'react'
 import { useParams } from "react-router-dom";
-import { fetchPost } from '../store/postPage/actions'
+import { fetchPost } from '../../store/postPage/actions'
 import { useSelector, useDispatch } from "react-redux";
-import { selectPostAndComments } from '../store/postPage/selectors'
+import { selectPostAndComments } from '../../store/postPage/selectors'
 import ReactMarkdown from "react-markdown";
 import moment from "moment";
+import './PostPage.css'
 
 const PostPage = () => {
   const dispatch = useDispatch()
@@ -18,15 +19,15 @@ const PostPage = () => {
   }, [dispatch, id]);
 
   return (
-    <div>
-      <h1>PostPage!!{id}</h1>
+    <div className='page'>
+      <h1>More about post {id}</h1>
       {!postData ? (
       <p>Loading...</p>
        ) : ( 
         <>
           <h1>{postData.post.title}</h1>
           <p className="meta">
-            By {postData.post.developer.name} 
+            By {postData.post.developer.name}<br/>   
             {moment(postData.post.createdAt).format("DD-MM-YYYY")}
             {postData.post.tags.map(tag => <button>{tag.tag}</button>)}
             </p>

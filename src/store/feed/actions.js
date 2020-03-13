@@ -18,4 +18,6 @@ export const thunkFunction = async (dispatch, getState) => {
     dispatch(updatePosts([...state.feed.posts], true))
     const fetchedPosts = await axios.get(`${API_URL}/posts?offset=${state.feed.posts.length}&limit=5`)
     dispatch(updatePosts([...state.feed.posts, ...fetchedPosts.data.rows], false))
+    const devs = await axios.get(`${API_URL}/developers`)
+    console.log(devs)
   }

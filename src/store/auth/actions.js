@@ -21,8 +21,31 @@ export const login = (email, password) => {
       email: email,
       password: password
     })
+    console.log(response)
     const token = response.data.jwt
     localStorage.setItem('AccessToken', token)
+
+    const profile = await axios.get(`${API_URL}/me`, { 
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    })
+    const profileinfo = profile.data
+    dispatch(userLoggedIn(token, profileinfo))
+  };
+}
+
+export const signUp = (name, email, password) => {
+  // Return the thunk itself, i.e. a function
+  return async function thunk(dispatch, getState) {
+    const response = await axios.post(`${API_URL}/signup`, {
+      name: name,
+      email: email,
+      password: password
+    })
+    const token = response.data.jwt
+    localStorage.setItem('AccessToken', token)
+
     const profile = await axios.get(`${API_URL}/me`, { 
       headers: {
         Authorization: `Bearer ${token}`
